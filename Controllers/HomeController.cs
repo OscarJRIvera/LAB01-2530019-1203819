@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using LAB01_2530019_1203819.Models;
+using System.IO;
+using System.Web;
+
+
 
 namespace LAB01_2530019_1203819.Controllers
 {
@@ -33,16 +37,16 @@ namespace LAB01_2530019_1203819.Controllers
             return View("index");
             
         }
-        public IActionResult SubirArchivo()
-        {
-            return View();
-        }
+        //public IActionResult SubirArchivo()
+        //{
+           //return View();
+       // }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public IActionResult SubirArchivo([Bind("Archivo")] object{ archivo })
+        //public IActionResult SubirArchivo(HttpPostedFileBase postedFile)
         //{
-        //    return View();
+           // return View();
         //}
 
         public IActionResult Privacy()

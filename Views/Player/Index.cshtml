@@ -9,6 +9,32 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<p>
+    Selecione la busqueda que desea
+</p>
+<form>
+
+    <select>
+        class="form-select" aria-label="Default select example">
+        <option selected>Filtros de busqueda</option>
+        <option value="1">Nombre</option>
+        <option value="2">Apellido</option>
+        <option value="3">Posición</option>
+        <option value="4">Salario</option>
+        <option value="5">Club</option>
+
+    </select>
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Escribir" aria-label="x" aria-describedby="basic-addon2">
+
+        <input type="submit" value="Buscar" class="btn btn-primary" asp-controller="Player" asp-action="Searchx"/>
+
+    </div>
+
+    
+</form> 
+
+
 <table class="table">
     <thead>
         <tr>
@@ -37,35 +63,36 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Club)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Last_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.First_name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Position)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Base_salary)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Guaranteed_compensation)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Club)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Last_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.First_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Base_salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Guaranteed_compensation)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

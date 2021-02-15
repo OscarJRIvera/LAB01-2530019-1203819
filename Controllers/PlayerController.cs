@@ -5,12 +5,19 @@ using System.Threading.Tasks;
 using LAB01_2530019_1203819.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Text;
 
 namespace LAB01_2530019_1203819.Controllers
 {
     public class PlayerController : Controller
     {
+        public List<Player> PlayerList; //la lista del sistema
+        public List<Player> List2;//mi lista aqui 
+        
         private readonly Models.Data.Singleton J = Models.Data.Singleton.Instance; //base de datos
+        private readonly Models.Data.Singleton C;
 
         // GET: PlayerController
         public ActionResult Index()
@@ -25,7 +32,8 @@ namespace LAB01_2530019_1203819.Controllers
             return View(J.List2);
 
         }
-
+        public IActionResult IndexSearchName() => View();
+        
         // GET: PlayerController/Details/5
         public ActionResult Details(int? id)//? si existe o no existe 
         {
@@ -62,11 +70,45 @@ namespace LAB01_2530019_1203819.Controllers
                 return RedirectToAction("Index", "Home");
             return View();
         }
+        public ActionResult Searchx(string nombre)
+        {
+           
+            List<Player> searchname = new List<Player>(PlayerList);
+            List<Player> searchname2 = new List<Player>(List2);
+            List<Player> Name = new List<Player>();
+            if (J.TipeList.Value)
+            {
+                for (int i = 0; i < searchname.Count; i++)
+                {
+                    if (searchname[i].First_name == nombre)
+                    {
+                        Name.Add(searchname[i]);
+                        
+                    }
 
-       // public ActionResult Search(string? x)
-       //{
+                }
 
-       // }
+            }
+            else
+            {
+                for (int i = 0; i < searchname2.Count; i++)
+                {
+                    if (searchname2[i].First_name == nombre)
+                    {
+                        Name.Add(searchname2[i]);
+                        
+                    }
+
+                }
+
+            }
+            return View(Name);
+        }
+
+        // public ActionResult Search(string? x)
+        //{
+
+        // }
 
         // POST: PlayerController/Create
         [HttpPost]
@@ -115,13 +157,13 @@ namespace LAB01_2530019_1203819.Controllers
         }
 
         // GET: PlayerController/Edit/5
-        public IActionResult Edit(int? id)
+        public IActionResult Edit(int? Id)
         {
             if (J.TipeList == null)
                 return RedirectToAction("Index", "Home");
 
 
-            if (id == null)
+            if (Id == null)
             {
                 return NotFound();
             }
@@ -129,11 +171,11 @@ namespace LAB01_2530019_1203819.Controllers
             Player PlayerModel;
             if (J.TipeList.Value)
             {
-                PlayerModel = J.PlayerList.Find(m => m.Id == id);
+                PlayerModel = J.PlayerList.Find(m => m.Id == Id);
             }
             else
             {
-                PlayerModel = J.List2.Find(m => m.Id == id);
+                PlayerModel = J.List2.Find(m => m.Id == Id);
             }
            
             if (PlayerModel == null)
@@ -243,6 +285,46 @@ namespace LAB01_2530019_1203819.Controllers
             {
                 return View();
             }
+        }
+        public IActionResult Import()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Import(IFormFile file)
+        {
+            if (file == null || file.Length == 0) return Content("file not selected");
+            byte[] byts = new byte[file.Length];
+            using (var strm = file.OpenReadStream())
+            {
+                await strm.ReadAsync(byts, 0, byts.Length);
+            }
+            string cnt = Encoding.UTF8.GetString(byts);
+            string[] lines = cnt.Split('\n');
+            int i = 1;
+            foreach (string line in lines)
+            {
+                if (line == "club,last_name,first_name,position,base_salary,guaranteed_compensation") { }
+                else if (line == "") { }
+                else 
+                {
+                    string[] parts = line.Split(',');
+                    Player nuevo = new Player
+                    {
+                        Id = i,
+                        Club = parts[0],
+                        Last_name = parts[1],
+                        First_name = parts[2],
+                        Position = parts[3],
+                        Base_salary = double.Parse(parts[4]),
+                        Guaranteed_compensation = double.Parse(parts[5])
+                    };
+                    J.PlayerList.Add(nuevo);
+                    i++;
+                }
+            }
+            return RedirectToAction(nameof(Index));
         }
     }
 }

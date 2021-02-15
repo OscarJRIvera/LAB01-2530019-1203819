@@ -7,6 +7,7 @@ namespace LAB01_2530019_1203819.Models.Data
 {
     public sealed class Singleton
     {
+
         private readonly static Singleton _instance = new Singleton();
         public bool? TipeList;
         public List<Player> PlayerList; //la lista del sistema
@@ -25,4 +26,5 @@ namespace LAB01_2530019_1203819.Models.Data
             }
         }
     }
+        
 }
