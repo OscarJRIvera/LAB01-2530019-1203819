@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using LAB01_2530019_1203819.Models;
 using System.IO;
 using System.Web;
+using DoubleLinkedListLibrary1; 
 
 
 
@@ -27,7 +28,7 @@ namespace LAB01_2530019_1203819.Controllers
             return View();
         }
 
-        public IActionResult OptionList( int? id)
+        public IActionResult OptionList(int id)
         {
             if (Models.Data.Singleton.Instance.TipeList != null)
             {

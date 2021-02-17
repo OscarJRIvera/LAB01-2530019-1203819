@@ -14,7 +14,7 @@
 </p>
 <form>
 
-    <select>
+    <select id="Filter">
         class="form-select" aria-label="Default select example">
         <option selected>Filtros de busqueda</option>
         <option value="1">Nombre</option>
@@ -25,13 +25,13 @@
 
     </select>
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Escribir" aria-label="x" aria-describedby="basic-addon2">
+        <input id="Param" type="text" class="form-control" placeholder="Escribir" aria-label="x" aria-describedby="basic-addon2">
 
-        <input type="submit" value="Buscar" class="btn btn-primary" asp-controller="Player" asp-action="Searchx"/>
+        <input type="submit" value="Buscar" class="btn btn-primary" asp-controller="Player" asp-action="Search" />
 
     </div>
 
-    
+
 </form> 
 
 

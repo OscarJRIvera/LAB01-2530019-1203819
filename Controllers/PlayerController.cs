@@ -8,13 +8,14 @@ using Microsoft.AspNetCore.Mvc;
 using System.IO;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Text;
+using DoubleLinkedListLibrary1;
 
 namespace LAB01_2530019_1203819.Controllers
 {
     public class PlayerController : Controller
     {
         public List<Player> PlayerList; //la lista del sistema
-        public List<Player> List2;//mi lista aqui 
+        public DoubleLinkedList<Player> List2;//mi lista aqui 
         
         private readonly Models.Data.Singleton J = Models.Data.Singleton.Instance; //base de datos
         private readonly Models.Data.Singleton C;
@@ -52,7 +53,8 @@ namespace LAB01_2530019_1203819.Controllers
             }
             else
             {
-                PlayerModel = J.List2.Find(m => m.Id == id);
+                PlayerModel = J.PlayerList.Find(m => m.Id == id);
+               // PlayerModel = J.List2.Find(m => m.Id == id);
             }
 
             if (PlayerModel == null)
@@ -70,40 +72,31 @@ namespace LAB01_2530019_1203819.Controllers
                 return RedirectToAction("Index", "Home");
             return View();
         }
-        public ActionResult Searchx(string nombre)
-        {
-           
-            List<Player> searchname = new List<Player>(PlayerList);
-            List<Player> searchname2 = new List<Player>(List2);
-            List<Player> Name = new List<Player>();
-            if (J.TipeList.Value)
-            {
-                for (int i = 0; i < searchname.Count; i++)
-                {
-                    if (searchname[i].First_name == nombre)
-                    {
-                        Name.Add(searchname[i]);
-                        
-                    }
+        
+        //public ActionResult Search(FromQuery string Filter, String Param])
+        //{
 
-                }
+        //    switch (Filter)
+        //    {
+        //        case "Nombre":
+        //            if (J.TipeList.Value)
+        //            {
+        //                int del(Player a, Player b) => Player.Compare_First_Name(a, b); //funciona como delegado
+        //                var PlayerModel = new Player { First_name = Param };
+        //                var List = J.PlayerList.FindAll(m => del(m, PlayerModel) == 0);
+        //                return View("Index",List);
+        //            }
 
-            }
-            else
-            {
-                for (int i = 0; i < searchname2.Count; i++)
-                {
-                    if (searchname2[i].First_name == nombre)
-                    {
-                        Name.Add(searchname2[i]);
-                        
-                    }
-
-                }
-
-            }
-            return View(Name);
-        }
+        //            else
+        //            {
+        //                //PlayerModel = J.List2.Find(m => m.Id == id);
+        //            }
+        //            break;
+        //        default:
+        //            return View();
+        //    }
+        //    return View();
+        //}
 
         // public ActionResult Search(string? x)
         //{
@@ -135,16 +128,17 @@ namespace LAB01_2530019_1203819.Controllers
                 }
                 else
                 {
-                    if (J.List2.Count == 0)
-                    {
-                        PlayerModel.Id = 1;
-                    }
-                    else
-                    {
-                        var tmp = J.List2.Max(i => i.Id);//ya que si se elimina, salta el que falta para seguir. 
+
+                   if (J.List2.Count() == 0)
+                   {
+                       PlayerModel.Id = 1;
+                   }
+                   else
+                   {
+                        var tmp = J.List2.Count()+1;//ya que si se elimina, salta el que falta para seguir. 
                         PlayerModel.Id = tmp;
-                    }
-                    J.List2.Add(PlayerModel);
+                   }
+                   J.List2.Add(PlayerModel);
                    
                 }
                
@@ -175,7 +169,8 @@ namespace LAB01_2530019_1203819.Controllers
             }
             else
             {
-                PlayerModel = J.List2.Find(m => m.Id == Id);
+                PlayerModel = J.PlayerList.Find(m => m.Id == Id);
+                //PlayerModel = J.List2.Find(m => m.Id == Id);
             }
            
             if (PlayerModel == null)
@@ -210,8 +205,8 @@ namespace LAB01_2530019_1203819.Controllers
                     }
                     else
                     {
-                        var index = J.List2.FindIndex(j => j.Id == id); //busca en que posicion del jugador en el array
-                        J.List2[index] = PlayerModel;
+                        //var index = J.List2.FindIndex(j => j.Id == id); //busca en que posicion del jugador en el array
+                        //J.List2[index] = PlayerModel;
                     }
 
 
@@ -243,9 +238,11 @@ namespace LAB01_2530019_1203819.Controllers
             {
                 PlayerModel = J.PlayerList.Find(m => m.Id == id);
             }
+
             else
             {
-                PlayerModel = J.List2.Find(m => m.Id == id);
+                PlayerModel = J.PlayerList.Find(m => m.Id == id);
+                //PlayerModel = J.List2.Find(m => m.Id == id);
             }
 
             if (PlayerModel == null)
@@ -274,8 +271,8 @@ namespace LAB01_2530019_1203819.Controllers
                 }
                 else
                 {
-                    var index = J.List2.FindIndex(j => j.Id == id); //busca en que posicion del jugador en el array
-                    J.List2.RemoveAt(index);
+                    //var index = J.List2.FindIndex(j => j.Id == id); //busca en que posicion del jugador en el array
+                    //J.List2.RemoveAt(index);
                 }
                
 
@@ -294,7 +291,16 @@ namespace LAB01_2530019_1203819.Controllers
         [HttpPost]
         public async Task<IActionResult> Import(IFormFile file)
         {
-            if (file == null || file.Length == 0) return Content("file not selected");
+            int i ;
+            if (J.TipeList.Value)
+            {
+                i = J.PlayerList.Count()+1;
+            }  
+            else
+            {
+                i = J.List2.Count()+1;
+            }
+                if (file == null || file.Length == 0) return Content("file not selected");
             byte[] byts = new byte[file.Length];
             using (var strm = file.OpenReadStream())
             {
@@ -302,7 +308,7 @@ namespace LAB01_2530019_1203819.Controllers
             }
             string cnt = Encoding.UTF8.GetString(byts);
             string[] lines = cnt.Split('\n');
-            int i = 1;
+            
             foreach (string line in lines)
             {
                 if (line == "club,last_name,first_name,position,base_salary,guaranteed_compensation") { }
@@ -320,7 +326,12 @@ namespace LAB01_2530019_1203819.Controllers
                         Base_salary = double.Parse(parts[4]),
                         Guaranteed_compensation = double.Parse(parts[5])
                     };
-                    J.PlayerList.Add(nuevo);
+                    if (J.TipeList.Value)
+                        J.PlayerList.Add(nuevo);
+                    else
+                        J.List2.Add(nuevo);
+
+                    
                     i++;
                 }
             }
