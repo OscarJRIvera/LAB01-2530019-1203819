@@ -72,39 +72,62 @@ namespace LAB01_2530019_1203819.Controllers
                 return RedirectToAction("Index", "Home");
             return View();
         }
-        
-        //public ActionResult Search(FromQuery string Filter, String Param])
-        //{
+        public delegate int PlayerComp(Player a, Player b); //Crear el tipo de delegado que recibe los dos parametros a comparar
+        public ActionResult Search(string Filter, string Param)
+        {
+            PlayerComp comparador;//Un tipo de apuntador para tener internamente que tipo de comparacion se va a hacer
+            Player PlayerModel;
+            switch (Filter)
+            {
+                case "Nombre":
+                    comparador = Player.Compare_First_Name;
+                    PlayerModel = new Player { First_name = Param };
+                    break;
+                case "Apellido":
+                    comparador = Player.Compare_Last_Name;
+                    PlayerModel = new Player {Last_name = Param };
+                    break;
+                case "Club":
+                    comparador = Player.Compare_Club;
+                    PlayerModel = new Player { Club = Param };
+                    break;
+                case "Posición":
+                    comparador = Player.Compare_Position;
+                    PlayerModel = new Player { Position = Param };
+                    break;
+                case "Salario Igual A":
+                    comparador = Player.Compare_Base_Salary;
+                    PlayerModel = new Player { Base_salary = double.Parse(Param) };
+                    break;
+                case "Salario Mayor A":
+                    comparador = Player.Compare_Base_Salary_Upper;
+                    PlayerModel = new Player { Base_salary = double.Parse(Param) };
+                    break;
+                case "Salario Menor A":
+                    comparador = Player.Compare_Base_Salary_Lower;
+                    PlayerModel = new Player { Base_salary = double.Parse(Param) };
+                    break;
+                default:
+                    comparador = (Player a, Player b) => { return a.Id.CompareTo(b.Id); };//funcion anonima, solo por si no entra en ninguno de los cases.
+                    PlayerModel = new Player { Id = int.Parse(Param) };
+                    break;
+            }
 
-        //    switch (Filter)
-        //    {
-        //        case "Nombre":
-        //            if (J.TipeList.Value)
-        //            {
-        //                int del(Player a, Player b) => Player.Compare_First_Name(a, b); //funciona como delegado
-        //                var PlayerModel = new Player { First_name = Param };
-        //                var List = J.PlayerList.FindAll(m => del(m, PlayerModel) == 0);
-        //                return View("Index",List);
-        //            }
+            if (J.TipeList.Value)
+            {
+                var List = J.PlayerList.FindAll(m => comparador(m, PlayerModel) == 0);
+                return View("Index", List);
+            }
 
-        //            else
-        //            {
-        //                //PlayerModel = J.List2.Find(m => m.Id == id);
-        //            }
-        //            break;
-        //        default:
-        //            return View();
-        //    }
-        //    return View();
-        //}
+            else
+            {
+                var List = J.List2.FindAll(m => comparador(m, PlayerModel) == 0);
+                return View("Index", List);
+            }
+        }
 
-        // public ActionResult Search(string? x)
-        //{
-
-        // }
-
-        // POST: PlayerController/Create
-        [HttpPost]
+// POST: PlayerController/Create
+[HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind("Id, Club,Last_name,First_name,Position,Base_salary,Guaranteed_compensation")] Player PlayerModel)
         {

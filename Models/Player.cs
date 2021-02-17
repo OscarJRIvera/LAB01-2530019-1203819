@@ -43,6 +43,18 @@ namespace LAB01_2530019_1203819.Models
             int r = x.Base_salary.CompareTo(y.Base_salary);
             return r;
         }
+        public static int Compare_Base_Salary_Upper(Player x, Player y) //Funcion del delegado
+        {
+            int r = x.Base_salary.CompareTo(y.Base_salary);
+            if (r > 0) return 0;
+            return -1;
+        }
+        public static int Compare_Base_Salary_Lower(Player x, Player y) //Funcion del delegado
+        {
+            int r = x.Base_salary.CompareTo(y.Base_salary);
+            if (r < 0) return 0;
+            return 1;
+        }
         public static int Compare_Club(Player x, Player y) //Funcion del delegado
         {
             int r = x.Club.CompareTo(y.Club);
