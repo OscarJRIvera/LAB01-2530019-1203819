@@ -193,7 +193,7 @@ namespace LAB01_2530019_1203819.Controllers
             else
             {
                 PlayerModel = J.PlayerList.Find(m => m.Id == Id);
-                //PlayerModel = J.List2.Find(m => m.Id == Id);
+                PlayerModel = J.List2.Find(m => m.Id == Id);
             }
            
             if (PlayerModel == null)
@@ -228,12 +228,14 @@ namespace LAB01_2530019_1203819.Controllers
                     }
                     else
                     {
-                        //var index = J.List2.FindIndex(j => j.Id == id); //busca en que posicion del jugador en el array
-                        //J.List2[index] = PlayerModel;
+                        for (int i = 1; i< J.List2.Count()+1; i++)
+                        {
+                            if (i==id)
+                            {
+                                J.List2.Posi(i,PlayerModel) ;
+                            }
+                        }
                     }
-
-
-                   
                 }
                 catch
                 {
@@ -265,7 +267,7 @@ namespace LAB01_2530019_1203819.Controllers
             else
             {
                 PlayerModel = J.PlayerList.Find(m => m.Id == id);
-                //PlayerModel = J.List2.Find(m => m.Id == id);
+                PlayerModel = J.List2.Find(m => m.Id == id);
             }
 
             if (PlayerModel == null)
@@ -294,8 +296,15 @@ namespace LAB01_2530019_1203819.Controllers
                 }
                 else
                 {
-                    //var index = J.List2.FindIndex(j => j.Id == id); //busca en que posicion del jugador en el array
-                    //J.List2.RemoveAt(index);
+
+                    for (int i = 1; i < J.List2.Count() + 1; i++)
+                    {
+                        if (i == id)
+                        {
+                            J.List2.RemoveAt(i);
+                        }
+                    }
+                    
                 }
                
 
@@ -308,12 +317,15 @@ namespace LAB01_2530019_1203819.Controllers
         }
         public IActionResult Import()
         {
+            if (J.TipeList == null)
+                return RedirectToAction("Index", "Home");
             return View();
         }
 
         [HttpPost]
         public async Task<IActionResult> Import(IFormFile file)
         {
+            
             int i ;
             if (J.TipeList.Value)
             {

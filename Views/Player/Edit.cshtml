@@ -17,19 +17,20 @@
                 <label asp-for="Club" class="control-label"></label>
                 <input asp-for="Club" class="form-control" />
                 <span asp-validation-for="Club" class="text-danger"></span>
-            <input type="hidden" asp-for="First_name" />
-            <input type="hidden" asp-for="Last_name" />
-            <input type="hidden" asp-for="Position" />
-            <div class="form-group">
-                <label asp-for="Base_salary" class="control-label"></label>
-                <input asp-for="Base_salary" class="form-control" />
-                <span asp-validation-for="Base_salary" class="text-danger"></span>
-            </div>
+                <input type="hidden" asp-for="First_name" />
+                <input type="hidden" asp-for="Last_name" />
+                <input type="hidden" asp-for="Position" />
+                <input type="hidden" asp-for="Guaranteed_compensation" />
+                <div class="form-group">
+                    <label asp-for="Base_salary" class="control-label"></label>
+                    <input asp-for="Base_salary" class="form-control" />
+                    <span asp-validation-for="Base_salary" class="text-danger"></span>
+                </div>
 
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+</form>
     </div>
 </div>
 
