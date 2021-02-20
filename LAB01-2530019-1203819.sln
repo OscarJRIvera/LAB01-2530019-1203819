@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LAB01-2530019-1203819", "LAB01-2530019-1203819.csproj", "{267A37B6-8D9A-4F76-ADE2-2066668C64F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleLinkedListLibrary1", "..\DoubleLinkedListLibrary1\DoubleLinkedListLibrary1.csproj", "{74E5C5D5-F75A-4C97-B1DE-ABB4B9513FB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoubleLinkedListLibrary1", "..\..\Escritorio\DoubleLinkedListLibrary1\DoubleLinkedListLibrary1.csproj", "{810F7F02-126F-4F1D-8E90-8A2F24C5E5A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{267A37B6-8D9A-4F76-ADE2-2066668C64F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{267A37B6-8D9A-4F76-ADE2-2066668C64F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{267A37B6-8D9A-4F76-ADE2-2066668C64F4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{74E5C5D5-F75A-4C97-B1DE-ABB4B9513FB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74E5C5D5-F75A-4C97-B1DE-ABB4B9513FB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74E5C5D5-F75A-4C97-B1DE-ABB4B9513FB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74E5C5D5-F75A-4C97-B1DE-ABB4B9513FB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{810F7F02-126F-4F1D-8E90-8A2F24C5E5A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{810F7F02-126F-4F1D-8E90-8A2F24C5E5A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{810F7F02-126F-4F1D-8E90-8A2F24C5E5A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{810F7F02-126F-4F1D-8E90-8A2F24C5E5A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
