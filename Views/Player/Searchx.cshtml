@@ -1,46 +1,17 @@
 ﻿@model IEnumerable<LAB01_2530019_1203819.Models.Player>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Buscar";
 }
 
-<h1 style="color:lightgreen">Index</h1>
+<h1 style="color:lightgreen">Buscar</h1>
+
+<h4 style="color:darkslateblue">Player</h4>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<p>
-    Selecione la busqueda que desea
-</p>
-<form asp-controller="Player" asp-action="Search">
-
-    <select name="Filter">
-        class="form-select" aria-label="Default select example">
-        <option selected>Filtros de busqueda</option>
-        <option value="Nombre">Nombre</option>
-        <option value="Apellido">Apellido</option>
-        <option value="Posición">Posición</option>
-        <option value="Salario Mayor A">Salario  Mayor A</option>
-        <option value="Salario Menor A">Salario Menor A</option>
-        <option value="Salario Igual A">Salario Igual A</option>
-        <option value="Club">Club</option>
-    </select>
-    <div class="input-group mb-3">
-        <input name="Param" type="text" class="form-control" placeholder="Escribir" aria-label="x" aria-describedby="basic-addon2">
-        <input type="submit" value="Buscar" class="btn btn-outline-dark" >
-    </div>
-
-</form>
-<form asp-controller="Player" asp-action="Write">
-    <div class="form-group">
-        <input type="submit" value="Mostrar Log" class="btn btn-outline-dark">
-        
-    </div>
-</form>
-
-
-
-<table class="table table-dark table-hover">
+<table class="table">
     <thead>
         <tr>
             <th>
@@ -93,9 +64,9 @@
                     @Html.DisplayFor(modelItem => item.Guaranteed_compensation)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
                 </td>
             </tr>
         }
