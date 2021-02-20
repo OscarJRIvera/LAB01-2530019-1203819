@@ -1,0 +1,9 @@
+C:\Users\darag\OneDrive\Documentos\DoubleLinkedListLibrary1\bin\Debug\netstandard2.0\DoubleLinkedListLibrary1.deps.json
+C:\Users\darag\OneDrive\Documentos\DoubleLinkedListLibrary1\bin\Debug\netstandard2.0\DoubleLinkedListLibrary1.dll
+C:\Users\darag\OneDrive\Documentos\DoubleLinkedListLibrary1\bin\Debug\netstandard2.0\DoubleLinkedListLibrary1.pdb
+C:\Users\darag\OneDrive\Documentos\DoubleLinkedListLibrary1\obj\Debug\netstandard2.0\DoubleLinkedListLibrary1.csprojAssemblyReference.cache
+C:\Users\darag\OneDrive\Documentos\DoubleLinkedListLibrary1\obj\Debug\netstandard2.0\DoubleLinkedListLibrary1.AssemblyInfoInputs.cache
+C:\Users\darag\OneDrive\Documentos\DoubleLinkedListLibrary1\obj\Debug\netstandard2.0\DoubleLinkedListLibrary1.AssemblyInfo.cs
+C:\Users\darag\OneDrive\Documentos\DoubleLinkedListLibrary1\obj\Debug\netstandard2.0\DoubleLinkedListLibrary1.csproj.CoreCompileInputs.cache
+C:\Users\darag\OneDrive\Documentos\DoubleLinkedListLibrary1\obj\Debug\netstandard2.0\DoubleLinkedListLibrary1.dll
+C:\Users\darag\OneDrive\Documentos\DoubleLinkedListLibrary1\obj\Debug\netstandard2.0\DoubleLinkedListLibrary1.pdb
