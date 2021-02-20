@@ -6,6 +6,7 @@ using LAB01_2530019_1203819.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Text;
 using DoubleLinkedListLibrary1;
@@ -14,6 +15,8 @@ namespace LAB01_2530019_1203819.Controllers
 {
     public class PlayerController : Controller
     {
+        public Stopwatch Time = Stopwatch.StartNew();
+ 
         public List<Player> PlayerList; //la lista del sistema
         public DoubleLinkedList<Player> List2;//mi lista aqui 
         
@@ -38,6 +41,8 @@ namespace LAB01_2530019_1203819.Controllers
         // GET: PlayerController/Details/5
         public ActionResult Details(int? id)//? si existe o no existe 
         {
+            Time.Reset();
+            Time.Start();
             if (J.TipeList == null)
                 return RedirectToAction("Index", "Home");
 
@@ -53,8 +58,8 @@ namespace LAB01_2530019_1203819.Controllers
             }
             else
             {
-                PlayerModel = J.PlayerList.Find(m => m.Id == id);
-               // PlayerModel = J.List2.Find(m => m.Id == id);
+               
+                PlayerModel = J.List2.Find(m => m.Id == id);
             }
 
             if (PlayerModel == null)
@@ -68,6 +73,8 @@ namespace LAB01_2530019_1203819.Controllers
         // GET: PlayerController/Create
         public ActionResult Create()
         {
+            Time.Reset();
+            Time.Start();
             if (J.TipeList == null)
                 return RedirectToAction("Index", "Home");
             return View();
@@ -75,6 +82,8 @@ namespace LAB01_2530019_1203819.Controllers
         public delegate int PlayerComp(Player a, Player b); //Crear el tipo de delegado que recibe los dos parametros a comparar
         public ActionResult Search(string Filter, string Param)
         {
+            Time.Reset();
+            Time.Start();
             PlayerComp comparador;//Un tipo de apuntador para tener internamente que tipo de comparacion se va a hacer
             Player PlayerModel;
             switch (Filter)
@@ -116,14 +125,20 @@ namespace LAB01_2530019_1203819.Controllers
             if (J.TipeList.Value)
             {
                 var List = J.PlayerList.FindAll(m => comparador(m, PlayerModel) == 0);
+                Time.Stop();
+                J.TextoTiempos = J.TextoTiempos + "Tiempo de Búsqueda:" + Time.ElapsedMilliseconds + "ms." + "\n";
                 return View("Index", List);
             }
 
             else
             {
                 var List = J.List2.FindAll(m => comparador(m, PlayerModel) == 0);
+                J.TextoTiempos = J.TextoTiempos + "Tiempo de Búsqueda:" + Time.ElapsedMilliseconds + "ms." + "\n";
+                Time.Stop();
                 return View("Index", List);
             }
+            
+            
         }
 
 // POST: PlayerController/Create
@@ -131,6 +146,7 @@ namespace LAB01_2530019_1203819.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind("Id, Club,Last_name,First_name,Position,Base_salary,Guaranteed_compensation")] Player PlayerModel)
         {
+            
             if (J.TipeList == null) 
                 return RedirectToAction("Index", "Home");
             try
@@ -164,7 +180,8 @@ namespace LAB01_2530019_1203819.Controllers
                    J.List2.Add(PlayerModel);
                    
                 }
-               
+                Time.Stop();
+                J.TextoTiempos = J.TextoTiempos + "Tiempo de carga de datos manual:" + Time.ElapsedMilliseconds + "ms." + "\n";
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -176,6 +193,8 @@ namespace LAB01_2530019_1203819.Controllers
         // GET: PlayerController/Edit/5
         public IActionResult Edit(int? Id)
         {
+            Time.Reset();
+            Time.Start();
             if (J.TipeList == null)
                 return RedirectToAction("Index", "Home");
 
@@ -195,7 +214,6 @@ namespace LAB01_2530019_1203819.Controllers
                 PlayerModel = J.PlayerList.Find(m => m.Id == Id);
                 PlayerModel = J.List2.Find(m => m.Id == Id);
             }
-           
             if (PlayerModel == null)
             {
                 return NotFound();
@@ -236,7 +254,10 @@ namespace LAB01_2530019_1203819.Controllers
                             }
                         }
                     }
+                    J.TextoTiempos = J.TextoTiempos + "Tiempo de Edición:" + Time.ElapsedMilliseconds + "ms." + "\n";
+                    Time.Stop();
                 }
+                
                 catch
                 {
                     throw;
@@ -250,6 +271,8 @@ namespace LAB01_2530019_1203819.Controllers
         // GET: PlayerController/Delete/5
         public ActionResult Delete(int? id)
         {
+            Time.Reset();
+            Time.Start();
             if (J.TipeList == null)
                 return RedirectToAction("Index", "Home");
 
@@ -306,7 +329,8 @@ namespace LAB01_2530019_1203819.Controllers
                     }
                     
                 }
-               
+                J.TextoTiempos = J.TextoTiempos + "Tiempo de Eliminación:" + Time.ElapsedMilliseconds + "ms." + "\n";
+                Time.Stop();
 
                 return RedirectToAction(nameof(Index));
             }
@@ -317,6 +341,8 @@ namespace LAB01_2530019_1203819.Controllers
         }
         public IActionResult Import()
         {
+            Time.Reset();
+            Time.Start();
             if (J.TipeList == null)
                 return RedirectToAction("Index", "Home");
             return View();
@@ -370,6 +396,15 @@ namespace LAB01_2530019_1203819.Controllers
                     i++;
                 }
             }
+            J.TextoTiempos = J.TextoTiempos + "Tiempo de carga de datos mediante archivo:" + Time.ElapsedMilliseconds + "ms." + "\n";
+            Time.Stop();
+            return RedirectToAction(nameof(Index));
+        }
+        public async Task<IActionResult> Write()
+        {
+            StreamWriter file = new StreamWriter("MediciónDeTiempos.txt");
+            file.WriteLine(J.TextoTiempos);
+            file.Close();
             return RedirectToAction(nameof(Index));
         }
     }

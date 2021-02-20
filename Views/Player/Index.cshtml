@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 style="color:lightgreen">Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -27,12 +27,20 @@
     </select>
     <div class="input-group mb-3">
         <input name="Param" type="text" class="form-control" placeholder="Escribir" aria-label="x" aria-describedby="basic-addon2">
-        <input type="submit" value="Buscar" class="btn btn-primary" />
+        <input type="submit" value="Buscar" class="btn btn-outline-dark" >
     </div>
-</form> 
+
+</form>
+<form asp-controller="Player" asp-action="Write">
+    <div class="form-group">
+        <input type="submit" value="Mostrar Log" class="btn btn-outline-dark">
+        
+    </div>
+</form>
 
 
-<table class="table">
+
+<table class="table table-dark table-hover">
     <thead>
         <tr>
             <th>

@@ -1,0 +1,7 @@
+Tiempo de carga de datos mediante archivo:19ms.
+Tiempo de carga de datos manual:9ms.
+Tiempo de Búsqueda:0ms.
+Tiempo de Búsqueda:0ms.
+Tiempo de Eliminación:5ms.
+Tiempo de Edición:1ms.
+

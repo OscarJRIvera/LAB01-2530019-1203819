@@ -13,6 +13,7 @@ namespace LAB01_2530019_1203819.Models.Data
         public bool? TipeList;
         public List<Player> PlayerList; //la lista del sistema
         public DoubleLinkedList<Player> List2;//mi lista aqui 
+        public String TextoTiempos = "";
        
         private Singleton()
         {
