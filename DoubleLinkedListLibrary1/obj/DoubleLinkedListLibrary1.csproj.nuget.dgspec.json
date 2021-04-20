@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\darag\\OneDrive\\Documentos\\DoubleLinkedListLibrary1\\DoubleLinkedListLibrary1.csproj": {}
+    "C:\\Users\\darag\\source\\repos\\LAB01-2530019-1203819\\DoubleLinkedListLibrary1\\DoubleLinkedListLibrary1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\darag\\OneDrive\\Documentos\\DoubleLinkedListLibrary1\\DoubleLinkedListLibrary1.csproj": {
+    "C:\\Users\\darag\\source\\repos\\LAB01-2530019-1203819\\DoubleLinkedListLibrary1\\DoubleLinkedListLibrary1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\darag\\OneDrive\\Documentos\\DoubleLinkedListLibrary1\\DoubleLinkedListLibrary1.csproj",
+        "projectUniqueName": "C:\\Users\\darag\\source\\repos\\LAB01-2530019-1203819\\DoubleLinkedListLibrary1\\DoubleLinkedListLibrary1.csproj",
         "projectName": "DoubleLinkedListLibrary1",
-        "projectPath": "C:\\Users\\darag\\OneDrive\\Documentos\\DoubleLinkedListLibrary1\\DoubleLinkedListLibrary1.csproj",
+        "projectPath": "C:\\Users\\darag\\source\\repos\\LAB01-2530019-1203819\\DoubleLinkedListLibrary1\\DoubleLinkedListLibrary1.csproj",
         "packagesPath": "C:\\Users\\darag\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\darag\\OneDrive\\Documentos\\DoubleLinkedListLibrary1\\obj\\",
+        "outputPath": "C:\\Users\\darag\\source\\repos\\LAB01-2530019-1203819\\DoubleLinkedListLibrary1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\darag\\AppData\\Roaming\\NuGet\\NuGet.Config",

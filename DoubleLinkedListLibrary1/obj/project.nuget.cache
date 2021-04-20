@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "V5AsJi5M3Yy+gh5FHDF9IlFSBuS2+DoSH4+ftLuxTDdhMQpWG95/nIa3wTFjLrAm9ci1nPdbvu3Sialvbga1Aw==",
+  "dgSpecHash": "6q9sQg0KRmJwZ41kqpquIJNozYpO7DqQBpwFqWzSvOWaKOfO9nbI2M8XrXjzgmd0QfL7BrZ/M+sMPfPrszXoqQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\darag\\OneDrive\\Documentos\\DoubleLinkedListLibrary1\\DoubleLinkedListLibrary1.csproj",
+  "projectFilePath": "C:\\Users\\darag\\source\\repos\\LAB01-2530019-1203819\\DoubleLinkedListLibrary1\\DoubleLinkedListLibrary1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\darag\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\darag\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
